@@ -1,0 +1,203 @@
+Before_Pre-preocessing-1
+------------------------
+1) head Python_Ques.txt
+2) wc Python_Ques.txt
+3) head -n 40800 Python_Ques.txt > FT.train
+4) tail -n 10200 Python_Ques.txt > FT.valid
+5) ./fasttext supervised -input FT.train -output model_FT
+6) ./fasttext predict model_FT.bin -
+	type: Reportlab text in new line with fix column width?(__label__python)
+	type: create airflow environment variables (__label__python) 
+7) ./fasttext test model_FT.bin FT.valid
+8) ./fasttext test model_FT.bin FT.valid 2
+9) ./fasttext test model_FT.bin FT.valid 3
+10)./fasttext test model_FT.bin FT.valid 4
+11)./fasttext test model_FT.bin FT.valid 5 
+
+Before_Pre-preocessing-2
+------------------------
+1) ./fasttext predict model_FT.bin - 2
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas)
+	type: create airflow environment variables (__label__python, __label__python-3.x)
+2) ./fasttext predict model_FT.bin - 3
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas, __label__python-3.x)
+	type: create airflow environment variables (__label__python, __label__python-3.x, __label__tensorflow)
+3) ./fasttext predict model_FT.bin - 4
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas, __label__python-3.x, __label__matplotlib)
+	type: create airflow environment variables (__label__python, __label__python-3.x, __label__tensorflow, __label__flask)
+4) ./fasttext predict model_FT.bin - 5
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas, __label__python-3.x, __label__matplotlib, __label__numpy)
+	type: create airflow environment variables (__label__python, __label__python-3.x, __label__tensorflow, __label__flask, __label__pandas)
+
+After_Pre-processing
+-------------------------
+1) cat Python_Ques.txt | sed -e "s/\([.\!?,'/()]\)/ \1 /g" | tr "[:upper:]" "[:lower:]" > Python_Ques1.txt
+2) head -n 40800 Python_Ques1.txt > FT1.train
+3) tail -n 10200 Python_Ques1.txt > FT1.valid
+4) ./fasttext supervised -input FT1.train -output model_FT1
+5) ./fasttext test model_FT1.bin FT1.valid
+6) ./fasttext test model_FT1.bin FT1.valid 2
+7) ./fasttext test model_FT1.bin FT1.valid 3
+8) ./fasttext test model_FT1.bin FT1.valid 4
+9) ./fasttext test model_FT1.bin FT1.valid 5
+10)./fasttext predict model_FT.bin - 2
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas)
+	type: create airflow environment variables (__label__python, __label__flask)
+11)./fasttext predict model_FT.bin - 3
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas, __label__numpy)
+	type: create airflow environment variables (__label__python, __label__flask, __label__opencv)
+12)./fasttext predict model_FT.bin - 4
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas, __label__numpy, __label__dataframe)
+	type: create airflow environment variables (__label__python, __label__flask, __label__opencv, __label__pandas)
+13)./fasttext predict model_FT.bin - 5
+	type: Reportlab text in new line with fix column width?(__label__python, __label__pandas, __label__numpy, __label__dataframe, __label__matplotlib)
+	type: create airflow environment variables (__label__python, __label__flask, __label__opencv, __label__pandas, __label__selenium)
+
+Epoch-1
+---------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -epoch 10
+2) ./fasttext test model_FT1.bin FT1.valid
+3) ./fasttext test model_FT1.bin FT1.valid 2
+4) ./fasttext test model_FT1.bin FT1.valid 3
+5) ./fasttext supervised -input FT1.train -output model_FT1 -epoch 25
+6) ./fasttext test model_FT1.bin FT1.valid 2
+7) ./fasttext test model_FT1.bin FT1.valid 3
+
+Epoch-2
+---------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -epoch 50
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -epoch 75
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+7) ./fasttext supervised -input FT1.train -output model_FT1 -epoch 100
+8) ./fasttext test model_FT1.bin FT1.valid 2
+9) ./fasttext test model_FT1.bin FT1.valid 3
+
+Learning_rate-1
+---------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.8
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+7) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.6
+8) ./fasttext test model_FT1.bin FT1.valid 2
+9) ./fasttext test model_FT1.bin FT1.valid 3
+10)./fasttext supervised -input FT1.train -output model_FT1 -lr 0.4
+11)./fasttext test model_FT1.bin FT1.valid 2
+12)./fasttext test model_FT1.bin FT1.valid 3
+
+Learning_rate-2
+----------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.2
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+
+Learning_Epoch-1
+----------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 10
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 25
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+
+Learning_Epoch-2
+----------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.8 -epoch 10
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.8 -epoch 25
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+
+Learning_Epoch-3
+----------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.6 -epoch 10
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.6 -epoch 25
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+
+Word_n_gram-1
+---------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 10 -wordNgrams 2
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 10 -wordNgrams 3
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+
+Word_n_gram-2
+---------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 25 -wordNgrams 2
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.8 -epoch 25 -wordNgrams 2
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+
+H_softmax-1
+---------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 10 -wordNgrams 2 -bucket 200000 -dim 50 -loss hs
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 25 -wordNgrams 2 -bucket 200000 -dim 50 -loss hs
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+7) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 25 -wordNgrams 2 -bucket 250000 -dim 50 -loss hs
+8) ./fasttext test model_FT1.bin FT1.valid 2
+9) ./fasttext test model_FT1.bin FT1.valid 3
+
+H_softmax-2
+--------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.8 -epoch 10 -wordNgrams 2 -bucket 200000 -dim 50 -loss hs
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.8 -epoch 25 -wordNgrams 2 -bucket 200000 -dim 50 -loss hs
+5) ./fasttext test model_FT1.bin FT1.valid 2
+6) ./fasttext test model_FT1.bin FT1.valid 3
+
+H_softmax-3
+--------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 25 -wordNgrams 3 -bucket 200000 -dim 50 -loss hs
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+
+H_softmax-4
+--------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 1.0 -epoch 10 -wordNgrams 3 -bucket 200000 -dim 50 -loss hs
+2) ./fasttext test model_FT1.bin FT1.valid 2
+3) ./fasttext test model_FT1.bin FT1.valid 3
+
+H_softmax-5
+--------------------------
+The codes are repeated
+
+H_softmax-6
+--------------------------
+The codes are repeated
+
+Multilabel
+--------------------------
+1) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.5 -epoch 25 -wordNgrams 2 -bucket 200000 -dim 50 -loss one-vs-all
+2) ./fasttext test model_FT1.bin FT1.valid -1 0.5
+3) ./fasttext predict-prob model_FT1.bin - -1 0.5
+	Type: reportlab text in new line with fix column width (__label__python 1.00001, __label__reportlab 0.938134, __label__pdf 0.749097)
+	Type: create airflow environment variables (__label__airflow 1.00001, __label__variables 1.00001, __label__python 1.00001)
+4) ./fasttext supervised -input FT1.train -output model_FT1 -lr 0.5 -epoch 25 -wordNgrams 3 -bucket 200000 -dim 50 -loss one-vs-all
+5) ./fasttext test model_FT1.bin FT1.valid -1 0.5
+6) ./fasttext test model_FT1.bin FT1.valid -1 0.9
+
+------------------------------------------------------------------THE-END-------------------------------------------------------------------	
+
+
+
+
+
+
+ 
